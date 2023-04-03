@@ -1,11 +1,18 @@
 #!/usr/bin/python3
-"""Module 1-rectangle
-Defines a Rectangle class.
-"""
+'''
+Module contains Rectangle Class
+'''
+
 
 class Rectangle:
+    '''An empty rectangle class
+    '''
     def __init__(self, width=0, height=0):
-
+        '''Initialises the Rectangle class
+        args:
+            width (int): The width of the rectangle
+            height (int): The height of the rectangle
+        '''
         if not isinstance(width, int):
             raise TypeError('width must be an integer')
         elif width < 0:
@@ -22,26 +29,36 @@ class Rectangle:
 
     @property
     def width(self):
-        return self._width
+        '''Returns the width property'''
+        return self.__width
 
     @width.setter
     def width(self, value):
+        '''The setter of the width peoperty
+        args:
+            value (int): The value of the width property
+        '''
         if not isinstance(value, int):
-            raise TypeError("width must be an integer")
+            raise TypeError('width must be an integer')
         elif value < 0:
-            raise ValueError("width must be >= 0")
+            raise ValueError('width must be >= 0')
         else:
-            self._width = value
+            self.__width = value
 
     @property
     def height(self):
-        return self._height
+        '''Returns the height property'''
+        return self.__height
 
     @height.setter
     def height(self, value):
+        '''The setter of the height peoperty
+        args:
+            value (int): The value of the height property
+        '''
         if not isinstance(value, int):
-            raise TypeError("height must be an integer")
+            raise TypeError('height must be an integer')
         elif value < 0:
-            raise ValueError("height must be >= 0")
+            raise ValueError('height must be >= 0')
         else:
-            self._height = value
+            self.__height = value
