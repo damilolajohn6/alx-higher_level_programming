@@ -1,102 +1,71 @@
 #!/usr/bin/python3
 """
-This module is composed by a class that defines a Rectangle
+Defines a class Rectangle
 """
 
 
 class Rectangle:
-    """ Class that defines a rectangle """
-number_of_instances = 0
-print_symbol = "#"
+    """Representation of a rectangle"""
 
-def __init__(self, width=0, height=0):
-    """Initialize the instance.
-    
-    Args:
-        width (int): Rectangle width.
-        height (int): Rectangle height.
-    """
+    number_of_instances = 0
+    print_symbol = "#"
 
-    self._width = width
-    self._height = height
-    Rectangle.number_of_instances += 1
+    def __init__(self, width=0, height=0):
+        """Initializes the rectangle"""
+        self.__width = width
+        self.__height = height
+        Rectangle.number_of_instances += 1
 
-@property
-def width(self):
-    """Return the value of the width."""
+    def __del__(self):
+        """No output is defined when an instance is deleted"""
+        Rectangle.number_of_instances -= 1
 
-    return self._width
+    @property
+    def width(self):
+        """getter for the private instance attribute width"""
+        return self.__width
 
-@width.setter
-def width(self, value):
-    """Set the value of the width.
-    
-    Args:
-        value (int): Rectangle width.
-        
-    Raises:
-        TypeError: If width is not an integer.
-        ValueError: If width is less than zero.
-    """
+    @width.setter
+    def width(self, value):
+        """setter for the private instance attribute width"""
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = value
 
-    if not isinstance(value, int):
-        raise TypeError("width must be an integer")
-    if value < 0:
-        raise ValueError("width must be >= 0")
-    self._width = value
+    @property
+    def height(self):
+        """getter for the private instance attribute height"""
+        return self.__height
 
-@property
-def height(self):
-    """Return the value of the height."""
+    @height.setter
+    def height(self, value):
+        """setter for the private instance attribute height"""
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
 
-    return self._height
+    def area(self):
+        """returns the area of the rectangle"""
+        return self.__width * self.__height
 
-@height.setter
-def height(self, value):
-    """Set the value of the height.
-    
-    Args:
-        value (int): Rectangle height.
-        
-    Raises:
-        TypeError: If height is not an integer.
-        ValueError: If height is less than zero.
-    """
+    def perimeter(self):
+        """returns the perimeter of the rectangle"""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return (self.__width * 2) + (self.__height * 2)
 
-    if not isinstance(value, int):
-        raise TypeError("height must be an integer")
-    if value < 0:
-        raise ValueError("height must be >= 0")
-    self._height = value
+    def __str__(self):
+        """returns printable string representation of the rectangle"""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        string = '\n'.join(str(self.print_symbol) * self.__width
+                           for j in range(self.__height))
+        return string
 
-def area(self):
-    """Return the area of the rectangle."""
-
-    return self.width * self.height
-
-def perimeter(self):
-    """Return the perimeter of the rectangle."""
-
-    if self.width == 0 or self.height == 0:
-        return 0
-
-    return (2 * self.width) + (2 * self.height)
-
-def __str__(self):
-    """Return a string representation of the rectangle."""
-
-    if self.width == 0 or self.height == 0:
-        return ""
-    
-    return ((str(self.print_symbol) * self.width + "\n") * self.height).rstrip()
-
-def __repr__(self):
-    """Return a string representation of the instance."""
-
-    return f"Rectangle({self.width}, {self.height})"
-
-def __del__(self):
-    """Print a message when the instance is deleted."""
-
-    Rectangle.number_of_instances -= 1
-    print("Bye rectangle...") 
+    def __repr__(self):
+        """returns a string representation of the rectangle for reproduction"""
+        return "Rectangle({}, {})".format(self.__width, self.__height)
