@@ -12,12 +12,13 @@ class Rectangle:
 
     def __init__(self, width=0, height=0):
         """Initializes the rectangle"""
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     def __del__(self):
-        """No output is defined when an instance is deleted"""
+        """prints a string when an instance has been deleted"""
+        print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
 
     @property
@@ -60,12 +61,12 @@ class Rectangle:
 
     def __str__(self):
         """returns printable string representation of the rectangle"""
-        if self.__width == 0 or self.__height == 0:
-            return ""
-        string = '\n'.join(str(self.print_symbol) * self.__width
-                           for j in range(self.__height))
+        string = ""
+        if self.__width != 0 and self.__height != 0:
+            string += "\n".join(str(self.print_symbol) * self.__width
+                                for j in range(self.__height))
         return string
 
     def __repr__(self):
         """returns a string representation of the rectangle for reproduction"""
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
