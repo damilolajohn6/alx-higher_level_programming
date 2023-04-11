@@ -1,0 +1,24 @@
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+bg = BaseGeometry()
+
+# Testing integer_validator() method
+# Should raise TypeError for missing arguments or non-integer values
+# Should raise ValueError for integer values less than or equal to zero
+
+bg.integer_validator()  # Raises TypeError
+bg.integer_validator(None)  # Raises TypeError
+bg.integer_validator("Hello", None)  # Raises TypeError
+bg.integer_validator("Hello", "a")  # Raises TypeError
+bg.integer_validator("Hello", -4)  # Raises ValueError
+bg.integer_validator("Hello", 4)  # No exception raised
+bg.integer_validator("Hello", 0)  # Raises ValueError
+bg.integer_validator("Hello", [1])  # Raises TypeError
+bg.integer_validator("Hello", (1, 2))  # Raises TypeError
+bg.integer_validator("Hello", {1, 2})  # Raises TypeError
+bg.integer_validator("Hello", True)  # Raises TypeError
+
+# Testing area() method
+# Should raise Exception since it is not implemented yet
+
+bg.area()  # Raises Exception
