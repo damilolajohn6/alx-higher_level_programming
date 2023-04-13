@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a class Student."""
 
+
 class Student:
     """Represent a student."""
 
@@ -15,14 +16,14 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-
     def to_json(self, attrs=None):
-        '''
+       '''
         Returns a dictionary representation of a Student instance
         Args:
             attrs (list): A list of required attributes
         '''
+       
         if (type(attrs) == list and
-            all(type(ele) == str for ele in attrs)):
+                all(type(ele) == str for ele in attrs)):
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
-        return self.
+        return self.__dict__
