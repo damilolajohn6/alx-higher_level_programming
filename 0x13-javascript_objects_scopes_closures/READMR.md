@@ -1,0 +1,1 @@
+scooes closure with javascript
